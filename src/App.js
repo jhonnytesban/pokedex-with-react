@@ -3,6 +3,7 @@ import './App.css';
 import Form from './components/Form';
 import Data from './components/Data';
 
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -10,7 +11,8 @@ class App extends React.Component {
       name: '',
       image: '',
       id: undefined,
-      types: []
+      types: [],
+      error: false
     }
   }
 
@@ -18,11 +20,15 @@ class App extends React.Component {
     fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.name}`)
     .then(res => res.json())
     .then(data => 
-      // console.log(data.types[0].type.name))
+      // console.log(data))
       this.setState({
       image: data.sprites.front_default,
       id: data.id,
-      types: data.types
+      types: data.types,
+      error: false
+    }))
+    .catch(err => this.setState({
+      error: true
     }))
 
     event.preventDefault()
@@ -35,14 +41,14 @@ class App extends React.Component {
   }
 
   render() {
-    const listType = this.state.types.map((type) => {
-      return <li>{type.type.name}</li>
-    })
     return(
       <Fragment>
         <h1>Pokédex</h1>
         <Form search={this.search} handleChange={this.handleChange}/>
-        <Data id={this.state.id} image={this.state.image} list={listType}/>
+        {this.state.error  && <p>Ese pokémon no existe</p>}
+        {!this.state.error  &&
+          <Data id={this.state.id} image={this.state.image} types={this.state.types}/>
+        }
       </Fragment>
     )
   }

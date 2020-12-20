@@ -1,14 +1,11 @@
 import React, {Fragment} from 'react'
 
 function Data (props) {
-  // if(props.list !== undefined){
-  //   return (
-  //     <div>
-  //       <p>Tipo</p>
-  //       <ul>{props.list}</ul>
-  //     </div>
-  //   )
-  // }
+  
+  const listType = props.types.map((type) => {
+    return <li key={type.slot}>{type.type.name}</li>
+  })
+
   return(
     <Fragment>
       {
@@ -16,7 +13,7 @@ function Data (props) {
       }
       
       <img src={props.image} alt=""/>
-      <ul>{props.list}</ul>
+      <ul>{listType}</ul>
     </Fragment>
   )
 }
