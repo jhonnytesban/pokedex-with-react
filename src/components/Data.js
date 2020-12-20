@@ -1,7 +1,8 @@
-import React, {Fragment} from 'react'
+import React, {Fragment} from 'react';
+import '../styles/Data.css';
 
 function Data (props) {
-  
+
   const listType = props.types.map((type) => {
     return <li key={type.slot}>{type.type.name}</li>
   })
@@ -9,11 +10,13 @@ function Data (props) {
   return(
     <Fragment>
       {
-        props.id && <p>Número de pokémon: {props.id}</p>
+        props.id && <p>Nº: {props.id}</p>
       }
       
-      <img src={props.image} alt=""/>
-      <ul>{listType}</ul>
+      <div className="container-img">
+        <img src={props.image} alt="" className="container__img"/>
+      </div>
+      <ul>Types:{listType}</ul>
     </Fragment>
   )
 }

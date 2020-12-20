@@ -12,7 +12,7 @@ class App extends React.Component {
       image: '',
       id: undefined,
       types: [],
-      error: false
+      error: true
     }
   }
 
@@ -35,9 +35,12 @@ class App extends React.Component {
   }
 
   handleChange = (event) => {
-    this.setState({
-      name: event.target.value
-    })
+    setTimeout(() => {
+      this.setState({
+        name: event.target.value
+      })
+      
+    }, 500);
   }
 
   render() {
@@ -45,10 +48,11 @@ class App extends React.Component {
       <Fragment>
         <h1>Pokédex</h1>
         <Form search={this.search} handleChange={this.handleChange}/>
-        {this.state.error  && <p>Ese pokémon no existe</p>}
-        {!this.state.error  &&
-          <Data id={this.state.id} image={this.state.image} types={this.state.types}/>
-        }
+          {(this.state.error  && this.state.name === '')  && <p>No has escrito</p>}
+          {(this.state.error  && this.state.name !== '')  &&<p>Ese pokémon no existe</p>}
+          {!this.state.error  &&
+            <Data id={this.state.id} image={this.state.image} types={this.state.types}/>
+          }
       </Fragment>
     )
   }

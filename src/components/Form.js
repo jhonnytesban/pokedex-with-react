@@ -4,8 +4,8 @@ function Form (props) {
   return(
     <Fragment>
       <form onSubmit={props.search}>
-          <input type="text" onChange={props.handleChange}/>
-          <input type="submit" value="Obtener imágenes"/>
+          <input placeholder="Introduce un nombre" type="text" onChange={props.handleChange}/>
+          <input type="submit" value="Search"/>
         </form>
     </Fragment>
   )
