@@ -1,9 +1,16 @@
-import React, {Fragment} from 'react'
+import React, {Fragment as div} from 'react'
 import './App.css';
 import Form from './components/Form';
 import Data from './components/Data';
 
 
+
+function Prueba(props) {
+  if (props.error) {
+    return <p>No has introducido nngún nombre</p>
+  }
+  return null
+}
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -40,20 +47,27 @@ class App extends React.Component {
         name: event.target.value
       })
       
-    }, 500);
+    }, 400);
+
+    
   }
 
   render() {
     return(
-      <Fragment>
-        <h1>Pokédex</h1>
-        <Form search={this.search} handleChange={this.handleChange}/>
-          {(this.state.error  && this.state.name === '')  && <p>No has escrito</p>}
-          {(this.state.error  && this.state.name !== '')  &&<p>Ese pokémon no existe</p>}
+      <div className="app">
+        <h1 className="title">Pokédex</h1>
+        <header>
+          <Form search={this.search} handleChange={this.handleChange}/>
+        </header>
+          {/* {(this.state.error  && this.state.name === '')  && <p>No has escrito</p>} */}
+          {/* {(this.state.error  && this.state.name !== '')  &&<p>Ese pokémon no existe</p>} */}
+        <section>
+          <Prueba error={this.state.error} name={this.state.name}/>
           {!this.state.error  &&
             <Data id={this.state.id} image={this.state.image} types={this.state.types}/>
           }
-      </Fragment>
+        </section>
+      </div>
     )
   }
 }
