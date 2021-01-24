@@ -1,5 +1,4 @@
 import React, {Fragment as div} from 'react'
-import './App.css';
 import Form from './components/Form';
 import Data from './components/Data';
 
@@ -59,8 +58,6 @@ class App extends React.Component {
         <header>
           <Form search={this.search} handleChange={this.handleChange}/>
         </header>
-          {/* {(this.state.error  && this.state.name === '')  && <p>No has escrito</p>} */}
-          {/* {(this.state.error  && this.state.name !== '')  &&<p>Ese pokémon no existe</p>} */}
         <section>
           <Prueba error={this.state.error} name={this.state.name}/>
           {!this.state.error  &&
