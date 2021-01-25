@@ -1,6 +1,7 @@
-import React, {Fragment as div} from 'react'
+import React, {Fragment} from 'react';
 import Form from './components/Form';
 import Data from './components/Data';
+import './styles/App.css'
 
 
 
@@ -10,6 +11,20 @@ function Prueba(props) {
   }
   return null
 }
+
+// const Mostrar = (props) => {
+//   if(props.error == true){
+//     return null
+//   }else {
+//     return (
+//       <Data id={this.state.id} image={this.state.image} types={this.state.types} />
+
+//     )
+
+//   }
+// }
+
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -33,9 +48,9 @@ class App extends React.Component {
       types: data.types,
       error: false
     }))
-    .catch(err => this.setState({
-      error: true
-    }))
+    // .catch(err => this.setState({
+    //   error: true
+    // }))
 
     event.preventDefault()
   }
@@ -53,18 +68,19 @@ class App extends React.Component {
 
   render() {
     return(
-      <div className="app">
-        <h1 className="title">Pokédex</h1>
+      <Fragment>
+        <h2 className="app__title">Pokédex</h2>
         <header>
           <Form search={this.search} handleChange={this.handleChange}/>
         </header>
         <section>
           <Prueba error={this.state.error} name={this.state.name}/>
+          {/* <Mostrar error={this.state.error}/> */}
           {!this.state.error  &&
             <Data id={this.state.id} image={this.state.image} types={this.state.types}/>
           }
         </section>
-      </div>
+      </Fragment>
     )
   }
 }
