@@ -4,19 +4,19 @@ import '../styles/Data.css';
 function Data (props) {
 
   const listType = props.types.map((type) => {
-    return <li key={type.slot}>{type.type.name}</li>
+    return <li className="data__li" key={type.slot}>{type.type.name}</li>
   })
 
   return(
     <Fragment>
       {
-        props.id && <p>Nº: {props.id}</p>
+        props.id && <p className="data__number">Nº de pokédex: {props.id}</p>
       }
       
       <div className="container-img">
         <img src={props.image} alt="" className="container__img"/>
       </div>
-      <ul>Types:{listType}</ul>
+      <ul className="data__ul">Types:{listType}</ul>
     </Fragment>
   )
 }
