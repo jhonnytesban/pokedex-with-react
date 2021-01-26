@@ -1,0 +1,16 @@
+.input__text{
+  border: 0;
+  outline: none;
+  border-bottom: 1px solid royalblue;
+  background-color: rgba(255, 255, 255, 0);
+  margin-right: 5px;
+  box-sizing: border-box;
+  padding: 0 5px;
+}
+.input__submit{
+  font-family: 'Roboto', sans-serif;
+  border: none;
+  font-size: .9em;
+  background-color: rgba(255, 255, 255, 0);
+  outline: none;
+}

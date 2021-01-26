@@ -1,13 +1,15 @@
-import React, {Fragment} from 'react';
+import React from 'react';
 import App from '../App';
+import Img from '../assets/fondo-pokedex2.jpg';
+import '../styles/Pokedex.css';
 
 class Pokedex extends React.Component {
   render() {
     return(
-      <Fragment>
+      <div className="pokedex">
+        <img className="pokedex__img" src={Img} alt="hola"/>
         <App />
-      </Fragment>
-
+      </div>
     )
   }
 }

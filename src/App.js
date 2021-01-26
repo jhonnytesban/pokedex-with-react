@@ -1,27 +1,17 @@
 import React, {Fragment} from 'react';
 import Form from './components/Form';
 import Data from './components/Data';
-import './styles/App.css'
+import './styles/App.css';
+import {Link} from 'react-router-dom';
+import {Button} from '@material-ui/core';
 
 
 
-function Prueba(props) {
-  if (props.error) {
-    return <p>No has introducido nngún nombre</p>
-  }
-  return null
-}
-
-// const Mostrar = (props) => {
-//   if(props.error == true){
-//     return null
-//   }else {
-//     return (
-//       <Data id={this.state.id} image={this.state.image} types={this.state.types} />
-
-//     )
-
+// function Prueba(props) {
+//   if (props.error) {
+//     return <p>No has introducido nngún nombre</p>
 //   }
+//   return null
 // }
 
 
@@ -48,9 +38,9 @@ class App extends React.Component {
       types: data.types,
       error: false
     }))
-    // .catch(err => this.setState({
-    //   error: true
-    // }))
+    .catch(err => this.setState({
+      error: true
+    }))
 
     event.preventDefault()
   }
@@ -58,7 +48,7 @@ class App extends React.Component {
   handleChange = (event) => {
     setTimeout(() => {
       this.setState({
-        name: event.target.value
+        name: event.target.value.toLowerCase()
       })
       
     }, 400);
@@ -69,17 +59,22 @@ class App extends React.Component {
   render() {
     return(
       <Fragment>
-        <h2 className="app__title">Pokédex</h2>
-        <header>
-          <Form search={this.search} handleChange={this.handleChange}/>
-        </header>
-        <section>
-          <Prueba error={this.state.error} name={this.state.name}/>
-          {/* <Mostrar error={this.state.error}/> */}
-          {!this.state.error  &&
-            <Data id={this.state.id} image={this.state.image} types={this.state.types}/>
-          }
-        </section>
+        <div className="app">
+          <header>
+            <Form search={this.search} handleChange={this.handleChange}/>
+          </header>
+          <div className="app-div">
+            <section>
+              {/* <Prueba error={this.state.error} name={this.state.name}/> */}
+              {!this.state.error  &&
+                <Data id={this.state.id} image={this.state.image} types={this.state.types}/>
+              }
+            </section>
+
+          </div>
+              <Button><Link to="/" className="app__link">Salir</Link></Button>
+
+        </div>
       </Fragment>
     )
   }
